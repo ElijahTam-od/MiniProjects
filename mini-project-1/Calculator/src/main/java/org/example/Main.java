@@ -2,18 +2,17 @@ package org.example;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 //Basic calculator program that can handle arithmetic operations with MDAS operation hierarchy.
 public class Main {
     //Setup
-    private static Calculator calculator = new Calculator(); //For using arithmetic operations
+    private static final Calculator calculator = new Calculator(); //For using arithmetic operations
     private static final Scanner scanner = new Scanner(System.in); //For getting user input in console
 
-    static List<Float> numbers = new ArrayList();
-    static List<String> operators = new ArrayList();
+    static List<Float> numbers = new ArrayList<>();
+    static List<String> operators = new ArrayList<>();
     static Boolean invalidInput = true;
     static Boolean invalidNumberOfOperators = false;
     static String errorMsg = "";
@@ -86,9 +85,9 @@ public class Main {
 //        System.out.println("List of operators: " + "\t"+ operators);
 
         //Start Calculation
+        //MDAS logic, checks for multiplication and division and then addition and subtraction.
         float result = 0;
-        //MDAS
-        int x = 0;
+        int x = 0; //Debugging to know number of loops
         while(operators.contains("*") || operators.contains("/")){
             //Multiplication and Division
             for(int count = 0; count < operators.size(); count++){
@@ -119,7 +118,6 @@ public class Main {
         //System.out.println("Loop has reached: " + x + " repetitions");
 
         while(operators.contains("+") || operators.contains("-")){
-            //Division
             for(int count = 0; count < operators.size(); count++){
                 if(operators.get(count).equals("+")){
                     result = calculator.Add(numbers.get(count), numbers.get(count+1));
@@ -146,7 +144,6 @@ public class Main {
             x++;
         }
         //System.out.println("Loop has reached: " + x + " repetitions");
-
         //System.out.println("List of numbers: " + "\t"+ numbers);
         //System.out.println("List of operators: " + "\t"+ operators);
 
