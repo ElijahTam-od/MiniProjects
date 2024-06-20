@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+//Basic calculator program that can handle arithmetic operations with MDAS operation hierarchy.
 public class Main {
     //Setup
-
     private static Calculator calculator = new Calculator(); //For using arithmetic operations
     private static final Scanner scanner = new Scanner(System.in); //For getting user input in console
 
