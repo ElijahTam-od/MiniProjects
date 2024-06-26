@@ -27,22 +27,40 @@ public class Library {
     }
 
     //=======================================================
-    //Add books
+    /**
+     * Adds a book to the library's book list.
+     *
+     * @param book the book to be added
+     */
     public void addBook(Book book) {
         bookList.add(book);
     }
 
-    //List all books
+    /**
+     * Returns the list of all books in the library.
+     *
+     * @return the list of books
+     */
     public List<Book> getBookList() {
         return bookList;
     }
 
-    //Find by ISBN
+    /**
+     * Finds a book in the library by its ISBN.
+     *
+     * @param ISBN The ISBN of the book to be found.
+     * @return An {@code Optional<Book>} containing the book if found, or an empty {@code Optional} if not found.
+     */
     public Optional<Book> findBookByISBN(String ISBN){
         return bookList.stream().filter(book -> book.getISBN().equals(ISBN)).findFirst();
     }
 
-    //Remove by ISBN
+    /**
+     * Removes a book from the library by its ISBN.
+     *
+     * @param ISBN The ISBN of the book to be removed.
+     * @throws NoSuchElementException if no book is found with the provided ISBN.
+     */
     public void removeBookByISBN(String ISBN){
         findBookByISBN(ISBN).ifPresentOrElse(
                 book -> bookList.remove(book),
@@ -50,17 +68,30 @@ public class Library {
         );
     }
 
-    //Find by Author
+    /**
+     * Finds books in the library by their author.
+     *
+     * @param author The author of the books to be found.
+     * @return A list of books written by the specified author.
+     *         If no books are found, an empty list is returned.
+     */
     public List<Book> findBooksByAuthor(String author){
         return bookList.stream()
-                .filter(book -> book.getAuthor().equalsIgnoreCase(author))
+                .filter(book -> book.getAuthor().toLowerCase().contains(author))
                 .collect(Collectors.toList());
     }
 
-    //Find by Title
+    /**
+     * Finds books in the library by their title.
+     *
+     * @param title The title of the books to be found.
+     * @return A list of books with the specified title.
+     *         If no books are found, an empty list is returned.
+     */
     public List<Book> findBooksByTitle(String title){
+        String lowerCaseTitle = title.toLowerCase();
         return bookList.stream()
-                .filter(book -> book.getTitle().equalsIgnoreCase(title))
+                .filter(book -> book.getTitle().toLowerCase().contains(lowerCaseTitle))
                 .collect(Collectors.toList());
     }
 

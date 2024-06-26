@@ -1,5 +1,11 @@
 package org.librarymanagement.book;
 
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class Manuscript extends Book{
     private String coverType;
 
@@ -8,11 +14,4 @@ public class Manuscript extends Book{
         this.coverType = coverType;
     }
 
-    public String getCoverType() {
-        return coverType;
-    }
-
-    public void setCoverType(String coverType) {
-        this.coverType = coverType;
-    }
 }

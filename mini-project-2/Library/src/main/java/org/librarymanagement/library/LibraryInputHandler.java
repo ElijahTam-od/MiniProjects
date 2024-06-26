@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+/**
+ * Singleton class to handle library input from the user.
+ */
 public class LibraryInputHandler {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Library library = Library.getInstance();
@@ -18,6 +21,12 @@ public class LibraryInputHandler {
     private LibraryInputHandler() {
     }
 
+
+    /**
+     * Returns the singleton instance of the LibraryInputHandler.
+     *
+     * @return the singleton instance.
+     */
     public static LibraryInputHandler getInstance(){
         if (instance == null) {
             instance = new LibraryInputHandler();
@@ -25,6 +34,9 @@ public class LibraryInputHandler {
         return instance;
     }
 
+    /**
+     * Starts the library input handler, displaying a menu for user interaction.
+     */
     public void start() {
         while (!exit) {
             int input = getUserSelection();
@@ -57,6 +69,11 @@ public class LibraryInputHandler {
         }
     }
 
+    /**
+     * Displays the user selection menu and returns the selected option.
+     *
+     * @return the selected menu
+     */
     private int getUserSelection() {
         int input = 0;
         boolean validInput = false;
@@ -89,6 +106,9 @@ public class LibraryInputHandler {
         return input;
     }
 
+    /**
+     * Prompts the user to create and add a book to the library.
+     */
     private void createAndAddBook() {
         System.out.println("Enter Title: ");
         String title = scanner.nextLine();
@@ -113,6 +133,13 @@ public class LibraryInputHandler {
         }
     }
 
+    /**
+     * Prompts the user to enter the details of an ebook and adds it to the library.
+     *
+     * @param author the author of the ebook.
+     * @param title  the title of the ebook.
+     * @param ISBN   the ISBN of the ebook.
+     */
     private void createAndAddEbook(String author, String title, String ISBN) {
         while (true) {
             System.out.println("Enter size in MB: ");
@@ -128,6 +155,13 @@ public class LibraryInputHandler {
         }
     }
 
+    /**
+     * Prompts the user to enter the details of a manuscript and adds it to the library.
+     *
+     * @param author the author of the manuscript.
+     * @param title  the title of the manuscript.
+     * @param ISBN   the ISBN of the manuscript.
+     */
     private void createAndAddManuscript(String author, String title, String ISBN) {
         System.out.println("Enter any cover type (e.g: Parchment, Vellum, Plain leather, etc.): ");
         String coverType = scanner.nextLine().trim();
@@ -136,6 +170,9 @@ public class LibraryInputHandler {
         System.out.println("Manuscript added.");
     }
 
+    /**
+     * Prompts the user to enter an ISBN and searches for the book in the library.
+     */
     private void findBookByISBN() {
         System.out.println("Enter ISBN: ");
         String query = scanner.nextLine();
@@ -147,12 +184,16 @@ public class LibraryInputHandler {
         );
     }
 
+    /**
+     * Prompts the user to enter an author and searches for books by the author in the library.
+     */
     private void findBooksByAuthor() {
         System.out.println("Enter author: ");
         String query = scanner.nextLine();
         List<Book> result = library.findBooksByAuthor(query);
 
         if (!result.isEmpty()) {
+            System.out.println("Found " + result.size() + " books\n");
             result.forEach(book -> System.out.println("\nTitle: " + book.getTitle() +
                     "\nAuthor: " + book.getAuthor() +
                     "\nISBN: " + book.getISBN()));
@@ -161,12 +202,16 @@ public class LibraryInputHandler {
         }
     }
 
+    /**
+     * Prompts the user to enter a title and searches for books by the author in the library.
+     */
     private void findBooksByTitle() {
         System.out.println("Enter title: ");
         String query = scanner.nextLine();
         List<Book> result = library.findBooksByTitle(query);
 
         if (!result.isEmpty()) {
+            System.out.println("Found " + result.size() + " books\n");
             result.forEach(book -> System.out.println("\nTitle: " + book.getTitle() +
                     "\nAuthor: " + book.getAuthor() +
                     "\nISBN: " + book.getISBN()));
@@ -175,6 +220,9 @@ public class LibraryInputHandler {
         }
     }
 
+    /**
+     * Prompts the user to enter an ISBN and searches for books by the ISBN then removes it in the library.
+     */
     private void removeBookByISBN() {
         System.out.println("Enter ISBN: ");
         String query = scanner.nextLine();
@@ -189,6 +237,9 @@ public class LibraryInputHandler {
         );
     }
 
+    /**
+     * Displays all the books in the library. If empty, will display a string "Library is empty"
+     */
     private void listAllBooks() {
         List<Book> books = library.getBookList();
         if (books.isEmpty()) {
