@@ -9,6 +9,10 @@ import org.elijahtam.od.view.ShopView;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * The ShopController class manages the shopping functionality of the application,
+ * including adding products to cart, displaying inventory, and handling user actions.
+ */
 public class ShopController {
     private Shop shop;
     private ShopView shopView;
@@ -18,6 +22,13 @@ public class ShopController {
     private UserController userController;
     private CartController cartController;
 
+    /**
+     * Constructs a ShopController object with the specified shop, shopView, and contextMenu.
+     *
+     * @param shop the Shop object representing the store's inventory
+     * @param shopView the ShopView object for displaying the shop's inventory
+     * @param contextMenu the ContextMenu object for navigating between different views
+     */
     public ShopController(Shop shop, ShopView shopView, ContextMenu contextMenu){
         this.shop = shop;
         this.shopView = shopView;
@@ -25,6 +36,12 @@ public class ShopController {
         this.contextMenu = contextMenu;
     }
 
+    /**
+     * Starts the shopping process, allowing users to interact with the store's inventory.
+     *
+     * @param userController the UserController object for managing user-related operations
+     * @param cartController the CartController object for managing cart-related operations
+     */
     public void startShopping(UserController userController, CartController cartController){
         this.userController = userController;
         this.cartController = cartController;
@@ -51,6 +68,10 @@ public class ShopController {
             }
         }
     }
+
+    /**
+     * Prompts the user to remove a product from the shopping cart.
+     */
     private void removeProduct() {
         System.out.println("Enter cart product ID:");
         String productKey = scanner.nextLine();
@@ -62,6 +83,9 @@ public class ShopController {
         }
     }
 
+    /**
+     * Prompts the user to add a product to the shopping cart.
+     */
     private void addProduct() {
         Product product = getProduct();
         int desiredQuantity = getDesiredQuantity(product);
@@ -72,6 +96,13 @@ public class ShopController {
         cartController.addProductToCart(userController.getUser(), productToAdd);
     }
 
+    /**
+     * Creates an instance of a specific subclass of Product based on the given product and quantity.
+     *
+     * @param product the Product object representing the product to be added
+     * @param quantity the int value representing the desired quantity of the product
+     * @return the Product object with the specified quantity
+     */
     private Product createProductInstance(Product product, int quantity) {
         if (product instanceof FoodProduct) {
             FoodProduct foodProduct = (FoodProduct) product;
@@ -84,6 +115,9 @@ public class ShopController {
         return null; // Handle error case appropriately
     }
 
+    /**
+     * Displays the user's shopping cart.
+     */
     private void displayCart() {
         cartController.displayCart();
         System.out.println("Press Enter to continue...");
@@ -94,11 +128,20 @@ public class ShopController {
         }
     }
 
+    /**
+     * Exits the shopping process and returns to the main menu.
+     */
     private void exitShop() {
         System.out.println("Returning to main menu...");
         contextMenu.start();
     }
 
+    /**
+     * Prompts the user to enter the desired quantity of a product.
+     *
+     * @param product the Product object representing the selected product
+     * @return the int value representing the desired quantity of the product
+     */
     private int getDesiredQuantity(Product product) {
         int quantity = 0;
         while (true) {
@@ -120,6 +163,11 @@ public class ShopController {
         return quantity;
     }
 
+    /**
+     * Prompts the user to enter the ID of a product and retrieves the corresponding Product object.
+     *
+     * @return the Product object with the specified ID
+     */
     public Product getProduct() {
         Product product = null;
         while (true) {
@@ -136,6 +184,11 @@ public class ShopController {
         return product;
     }
 
+    /**
+     * Prompts the user to enter an action and retrieves the selected action.
+     *
+     * @return the int value representing the selected action
+     */
     public int getUserAction(){
         int input = 0;
         while (true) {
@@ -163,10 +216,16 @@ public class ShopController {
         return input;
     }
 
+    /**
+     * Displays the shop's product inventory.
+     */
     public void displayProductInventory(){
         shopView.displayShop(shop);
     }
 
+    /**
+     * Loads sample product data into the shop's inventory.
+     */
     private void loadProductsData(){
         HashMap<String, Product> productInventory = shop.getProductInventory();
 
@@ -175,6 +234,11 @@ public class ShopController {
         }
     }
 
+    /**
+     * Creates and returns a list of sample products for testing purposes.
+     *
+     * @return the List of Product objects representing sample products
+     */
     private List<Product> sampleDataSet(){
         List<Product> sampleDataSet = new ArrayList<>();
         sampleDataSet.add(new FoodProduct(
