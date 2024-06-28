@@ -13,6 +13,11 @@ Repository submission for mini projects indicated in the java internship trainin
 <li>Perform basic arithmetic operations: addition, subtraction, multiplication, and division.
 <li>Handle integer and floating-point calculations.
 
+### E-commerce Application:
+- Manage shopping functionality including adding products to cart, displaying inventory, and handling user actions.
+- Handle operations related to shopping cart such as adding, displaying, and removing products from the cart.
+- Abstract class representing a generic product, with subclasses for different product types like FoodProduct and ElectronicProduct.
+
 ## Prerequisites
 <li>Java Development Kit (JDK) 8 or higher installed.
 <li>Maven build tool (optional for running tests and building).
