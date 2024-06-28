@@ -1,14 +1,11 @@
 package org.elijahtam.od;
 
 import org.elijahtam.od.entities.Cart;
-import org.elijahtam.od.entities.Shop;
 import org.elijahtam.od.entities.User;
 import org.elijahtam.od.controller.CartController;
 import org.elijahtam.od.controller.ContextMenu;
-import org.elijahtam.od.controller.ShopController;
 import org.elijahtam.od.controller.UserController;
 import org.elijahtam.od.view.CartView;
-import org.elijahtam.od.view.ShopView;
 import org.elijahtam.od.view.UserView;
 
 public class Main {
@@ -28,10 +25,7 @@ public class Main {
     }
 
     /**
-     * Sets up necessary components for the application:
-     * - Creates a shop and its associated view.
-     * - Creates a user and its associated view.
-     * - Creates a cart and its associated view.
+     * Sets up necessary components for the application
      */
     private static void setUpComponents() {
         // Create new user for demo

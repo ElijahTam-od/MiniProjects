@@ -29,12 +29,9 @@ public class ContextMenu {
                     goShopping();
                     break;
                 case 2:
-                    visitCart();
-                    break;
-                case 3:
                     visitProfile();
                     break;
-                case 4:
+                case 3:
                     exitApplication();
                     return;
                 default:
@@ -49,10 +46,6 @@ public class ContextMenu {
     }
 
     private void visitProfile() {
-        userController.displayUser();
-    }
-
-    private void visitCart() {
         userController.displayUser();
     }
 

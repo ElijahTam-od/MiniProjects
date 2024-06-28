@@ -18,6 +18,8 @@ public class CartView {
                 System.out.println("Quantity: " + product.getQuantity());
                 System.out.println("------------------------");
             }
+
+            System.out.println("Total Price: $" + cart.getTotalPrice());
         }
     }
 }
